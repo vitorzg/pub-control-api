@@ -1,4 +1,4 @@
-package br.com.pubcontrolapi.apirest.infra.security;
+package br.com.pubcontrol.apirest.infra.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

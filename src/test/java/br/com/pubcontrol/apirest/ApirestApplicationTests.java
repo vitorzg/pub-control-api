@@ -1,4 +1,4 @@
-package br.com.pubcontrolapi.apirest;
+package br.com.pubcontrol.apirest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

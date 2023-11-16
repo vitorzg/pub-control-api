@@ -1,4 +1,4 @@
-package br.com.pubcontrolapi.apirest.controllers;
+package br.com.pubcontrol.apirest.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pubcontrolapi.apirest.models.user.AuthenticationDTO;
-import br.com.pubcontrolapi.apirest.models.user.RegisterDTO;
-import br.com.pubcontrolapi.apirest.models.user.User;
-import br.com.pubcontrolapi.apirest.repositories.UserRepository;
+import br.com.pubcontrol.apirest.models.user.AuthenticationDTO;
+import br.com.pubcontrol.apirest.models.user.RegisterDTO;
+import br.com.pubcontrol.apirest.models.user.User;
+import br.com.pubcontrol.apirest.repositories.UserRepository;
 import jakarta.validation.Valid;
 
 @RestController
@@ -48,4 +48,3 @@ public class AuthorizationController {
     }
     
 }
- 
