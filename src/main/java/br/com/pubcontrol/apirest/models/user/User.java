@@ -1,4 +1,4 @@
-package br.com.pubcontrolapi.apirest.models.user;
+package br.com.pubcontrol.apirest.models.user;
 
 import java.util.Collection;
 import java.util.List;
