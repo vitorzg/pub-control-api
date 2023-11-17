@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.pubcontrol.apirest.infra.security.TokenService;
 import br.com.pubcontrol.apirest.models.user.AuthenticationDTO;
+import br.com.pubcontrol.apirest.models.user.LoginResponseDTO;
 import br.com.pubcontrol.apirest.models.user.RegisterDTO;
 import br.com.pubcontrol.apirest.models.user.User;
 import br.com.pubcontrol.apirest.repositories.UserRepository;
@@ -26,18 +28,22 @@ public class AuthorizationController {
     @Autowired
     private UserRepository repository;
 
-    @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
+    @Autowired
+    private TokenService tokenService;
 
-        System.out.println("Senha: "+data.password());
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO data){
+
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = this.tokenService.generatedToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
+    public ResponseEntity<User> register(@RequestBody @Valid RegisterDTO data){
         if (repository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 
         String ePassword = new BCryptPasswordEncoder().encode(data.password());
