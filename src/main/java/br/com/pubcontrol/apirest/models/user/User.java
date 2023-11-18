@@ -38,6 +38,10 @@ public class User implements UserDetails{
     @NotBlank(message = "login field cannot be blank")
     private String login;
 
+    @Column(name = "name_user")
+    @NotBlank(message = "name field cannot be blank")
+    private String name;
+
     @Column(name = "password_user")
     @NotBlank(message = "login field cannot be blank")
     @Size(min = 8)
@@ -47,8 +51,9 @@ public class User implements UserDetails{
     private UserRole role;
 
 
-    public User(String login, String password, UserRole role){
+    public User(String login, String password, String name, UserRole role){
         this.login = login;
+        this.name = name;
         this.password = password;
         this.role = role;
     }
