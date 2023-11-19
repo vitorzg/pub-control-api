@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class SecurityFIlter extends OncePerRequestFilter{
+public class SecurityFilter extends OncePerRequestFilter{
 
     @Autowired
     private TokenService tokenService;
@@ -30,10 +30,11 @@ public class SecurityFIlter extends OncePerRequestFilter{
         if (token != null) {
             var login = tokenService.validateToke(token);
             UserDetails user = userRepository.findByLogin(login);
-
+            
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
+        
         filterChain.doFilter(request, response);
     }
 
