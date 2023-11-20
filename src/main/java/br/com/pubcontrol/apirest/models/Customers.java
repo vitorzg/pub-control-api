@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -38,16 +39,13 @@ public class Customers {
 
     @Column(name = "cpf_custumer")
     @NotBlank(message = "cpf field cannot be blank")
-    @Size(max = 11)
-    @CPF
-    private int cpf;
+    private String cpf;
 
     @Column(name = "tel_customer")
-    @Size(max = 12)
-    private int tel;
+    @NotBlank(message = "tel field cannot be blank")
+    private String tel;
 
     @Column(name = "sts_customer")
-    @NotBlank
-    @Value("A")
-    private char status;
+    @Size(max = 1)
+    private String status;
 }
