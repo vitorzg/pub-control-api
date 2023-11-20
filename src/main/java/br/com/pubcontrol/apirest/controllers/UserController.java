@@ -3,8 +3,8 @@ package br.com.pubcontrol.apirest.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +23,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/details/{id}")
+    public ResponseEntity<UserDetails> findOneUsers(@Valid @PathVariable String id){
+        UserDetails user = this.userService.findById(id);
+        return ResponseEntity.ok(user);
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> findAllUsers(){

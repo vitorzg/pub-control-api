@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.pubcontrol.apirest.models.user.RegisterDTO;
 import br.com.pubcontrol.apirest.models.user.User;
 import br.com.pubcontrol.apirest.repositories.UserRepository;
 import jakarta.transaction.Transactional;
