@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class SecurityFIlter extends OncePerRequestFilter{
+public class SecurityFilter extends OncePerRequestFilter{
 
     @Autowired
     private TokenService tokenService;

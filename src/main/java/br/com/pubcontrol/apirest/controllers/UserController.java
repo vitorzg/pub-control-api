@@ -1,8 +1,12 @@
 package br.com.pubcontrol.apirest.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +23,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> findAllUsers(){
+        List<User> users = this.userService.findAll();
+        return ResponseEntity.ok(users);
+    }
     
     @PutMapping("/{id}")
     public ResponseEntity<Void> userUpdate(@Valid @PathVariable String id, @RequestBody User user){
