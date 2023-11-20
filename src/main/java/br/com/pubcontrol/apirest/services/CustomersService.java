@@ -43,13 +43,14 @@ public class CustomersService {
         return this.customersRepository.save(newObj);
     }
 
+    @Transactional
     public void delete(String id){
         Customers newObj = findById(id);
         try {
             newObj.setStatus("I");
             this.customersRepository.save(newObj);
         } catch (Exception e) {
-            throw new RuntimeException("Impossible to delete, check yout database rules.");
+            throw new RuntimeException("Unable to delete, check your database rules.");
         }
     }
 }
