@@ -36,16 +36,16 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> userUpdate(@Valid @PathVariable String id, @RequestBody User user){
-        user.setId(id);
-        this.userService.update(user);
-        return ResponseEntity.ok().build();
-    } 
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Void> userUpdate(@Valid @PathVariable String id, @RequestBody User user){
+    //     user.setId(id);
+    //     this.userService.update(user);
+    //     return ResponseEntity.ok().build();
+    // } 
 
-     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id){
-        this.userService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+    //  @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> delete(@PathVariable String id){
+    //     this.userService.delete(id);
+    //     return ResponseEntity.noContent().build();
+    // }
 }
