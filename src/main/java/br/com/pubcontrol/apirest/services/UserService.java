@@ -41,7 +41,7 @@ public class UserService {
         try {
             this.userRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RuntimeException("Impossible to delete, check yout database rules.");
+            throw new RuntimeException("Unable to delete, check your database rules.");
         }
     }
 }
