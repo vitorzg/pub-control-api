@@ -1,15 +1,14 @@
 package br.com.pubcontrol.apirest.models;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -51,11 +50,7 @@ public class Product {
     @Size(max = 1)
     private String status;
 
-    @ManyToMany
-    @JoinTable(
-        name = "sales_products",
-        joinColumns = @JoinColumn(name = "products_id"),
-        inverseJoinColumns = @JoinColumn(name = "sales_id"))
-    private List<Sales> sales;
+    @OneToMany(mappedBy = "product")
+    private Set<SalesProducts> salesProducts = new HashSet<>();
 
 }

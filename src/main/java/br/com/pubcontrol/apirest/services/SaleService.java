@@ -1,7 +1,11 @@
 package br.com.pubcontrol.apirest.services;
 
 import br.com.pubcontrol.apirest.models.Sales;
+import br.com.pubcontrol.apirest.models.SalesProducts;
+import br.com.pubcontrol.apirest.repositories.ProductRepository;
 import br.com.pubcontrol.apirest.repositories.SalesRepository;
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,14 +13,25 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class SaleService {
 
     @Autowired
     private SalesRepository salesRepository;
+    
 
-    public Sales create(Sales sale) {
-        sale = this.salesRepository.save(sale);
-        return sale;
+    // public Sales create(Sales sale) {
+    //     sale = this.salesRepository.save(sale);
+    //     return sale;
+    // }
+
+    public void create(Sales sales) {
+        if (sales.getSalesProducts() != null && !sales.getSalesProducts().isEmpty()) {
+            for (SalesProducts salesProduct : sales.getSalesProducts()) {
+                salesProduct.setSales(sales);
+            }
+        }
+        salesRepository.save(sales);
     }
 
     public Sales findById(String string) {
@@ -32,7 +47,7 @@ public class SaleService {
         Sales existingSale = findById(sale.getId());
         existingSale.setSeller(sale.getSeller());
         existingSale.setCustomer(sale.getCustomer());
-        existingSale.setProducts(sale.getProducts());
+        existingSale.setSalesProducts(sale.getSalesProducts());
         existingSale.setSaleDate(sale.getSaleDate());
 
         return this.salesRepository.save(existingSale);
