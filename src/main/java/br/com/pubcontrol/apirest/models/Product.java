@@ -1,7 +1,7 @@
 package br.com.pubcontrol.apirest.models;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -51,6 +51,6 @@ public class Product {
     private String status;
 
     @OneToMany(mappedBy = "product")
-    private Set<SalesProducts> salesProducts = new HashSet<>();
+    private List<SalesProducts> salesProducts = new ArrayList<>();
 
 }

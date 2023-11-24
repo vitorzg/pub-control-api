@@ -2,7 +2,6 @@ package br.com.pubcontrol.apirest.services;
 
 import br.com.pubcontrol.apirest.models.Sales;
 import br.com.pubcontrol.apirest.models.SalesProducts;
-import br.com.pubcontrol.apirest.repositories.ProductRepository;
 import br.com.pubcontrol.apirest.repositories.SalesRepository;
 import jakarta.transaction.Transactional;
 
@@ -18,12 +17,6 @@ public class SaleService {
 
     @Autowired
     private SalesRepository salesRepository;
-    
-
-    // public Sales create(Sales sale) {
-    //     sale = this.salesRepository.save(sale);
-    //     return sale;
-    // }
 
     public void create(Sales sales) {
         if (sales.getSalesProducts() != null && !sales.getSalesProducts().isEmpty()) {

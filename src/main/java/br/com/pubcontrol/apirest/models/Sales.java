@@ -1,9 +1,8 @@
 package br.com.pubcontrol.apirest.models;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-
+import java.util.ArrayList;
+import java.util.List;
 import br.com.pubcontrol.apirest.models.user.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -44,7 +43,7 @@ public class Sales {
     private Customers customer;
 
     @OneToMany(mappedBy = "sales", cascade = CascadeType.ALL)
-    private Set<SalesProducts> salesProducts = new HashSet<>();
+    private List<SalesProducts> salesProducts = new ArrayList<>();
 
     @Column(name = "sale_date", nullable = false)
     private LocalDateTime saleDate;
