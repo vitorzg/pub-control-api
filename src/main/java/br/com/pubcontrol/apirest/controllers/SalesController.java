@@ -34,14 +34,8 @@ public class SalesController {
     @GetMapping("/all")
     public ResponseEntity<List<Sales>> findAllSales() {
         List<Sales> sales = this.saleService.findAll();
+        System.out.println(sales);
         return ResponseEntity.ok(sales);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> updateSale(@Validated @PathVariable String id, @RequestBody Sales sale) {
-        sale.setId(id);
-        this.saleService.update(sale);
-        return ResponseEntity.accepted().build();
     }
 
     @DeleteMapping("/{id}")

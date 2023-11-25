@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -45,6 +46,13 @@ public class Sales {
     @OneToMany(mappedBy = "sales", cascade = CascadeType.ALL)
     private List<SalesProducts> salesProducts = new ArrayList<>();
 
+    @Column(name = "amount_sale")
+    private double amount;
+
     @Column(name = "sale_date", nullable = false)
     private LocalDateTime saleDate;
+
+    @Column(name = "status_sale")
+    @Size(max = 1)
+    private String status = "P";
 }

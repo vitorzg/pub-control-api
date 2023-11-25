@@ -18,13 +18,14 @@ public class SaleService {
     @Autowired
     private SalesRepository salesRepository;
 
-    public void create(Sales sales) {
-        if (sales.getSalesProducts() != null && !sales.getSalesProducts().isEmpty()) {
-            for (SalesProducts salesProduct : sales.getSalesProducts()) {
-                salesProduct.setSales(sales);
+    public void create(Sales sale) {
+        if (sale.getSalesProducts() != null && !sale.getSalesProducts().isEmpty()) {
+            for (SalesProducts salesProduct : sale.getSalesProducts()) {
+                salesProduct.setSales(sale);
             }
         }
-        salesRepository.save(sales);
+        sale.setStatus("P");
+        salesRepository.save(sale);
     }
 
     public Sales findById(String string) {
@@ -36,20 +37,10 @@ public class SaleService {
         return this.salesRepository.findAll();
     }
 
-    public Sales update(Sales sale) {
-        Sales existingSale = findById(sale.getId());
-        existingSale.setSeller(sale.getSeller());
-        existingSale.setCustomer(sale.getCustomer());
-        existingSale.setSalesProducts(sale.getSalesProducts());
-        existingSale.setSaleDate(sale.getSaleDate());
-
-        return this.salesRepository.save(existingSale);
-    }
-
     public void delete(String id) {
         Sales existingSale = findById(id);
         try {
-            this.salesRepository.delete(existingSale);
+            existingSale.setStatus("D");
         } catch (Exception e) {
             throw new RuntimeException("Unable to delete, check your database rules.");
         }

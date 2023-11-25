@@ -1,5 +1,7 @@
 package br.com.pubcontrol.apirest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class SalesProducts {
 
     @ManyToOne
     @JoinColumn(name = "sales_id")
+    @JsonIgnore
     private Sales sales;
 
     @ManyToOne
