@@ -1,10 +1,16 @@
 package br.com.pubcontrol.apirest.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -45,5 +51,9 @@ public class Product {
     @Column(name = "sts_product")
     @Size(max = 1)
     private String status;
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    private List<SalesProducts> salesProducts = new ArrayList<>();
 
 }
