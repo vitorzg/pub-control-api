@@ -19,7 +19,7 @@ import br.com.pubcontrol.apirest.repositories.UserRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 public class AuthorizationController {
 
     @Autowired
