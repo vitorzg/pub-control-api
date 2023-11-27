@@ -28,8 +28,8 @@ public class SecurityConfigurations {
                         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests(authorize -> authorize
                                                                     .requestMatchers(HttpMethod.POST, "auth/login").permitAll()
-                                                                    .requestMatchers(HttpMethod.POST, "auth/register").hasRole("ADMIN")
-                                                                    .requestMatchers(HttpMethod.GET, "user/all").hasRole("ADMIN")
+                                                                    .requestMatchers(HttpMethod.POST, "auth/register").permitAll()
+                                                                    .requestMatchers(HttpMethod.GET, "user/all").permitAll()
                                                                     .requestMatchers(HttpMethod.GET, "user/details/{id}").hasRole("ADMIN")
                                                                     // .requestMatchers(HttpMethod.PUT, "user/{id}").hasRole("ADMIN")
                                                                     // .requestMatchers(HttpMethod.DELETE, "user/{id}").hasRole("ADMIN")
